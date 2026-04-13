@@ -40,6 +40,7 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen name="+not-found" options={{ title: "Oops!" }} />
+                <Stack.Screen name="preview" options={{ headerShown: false }} />
               </Stack>
             </PlayerProvider>
           </ThemeProvider>
