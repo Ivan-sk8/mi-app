@@ -1,11 +1,16 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, View } from 'react-native';
-import 'react-native-reanimated';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider as NavigationThemeProvider,
+} from "@react-navigation/native";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { Platform, StyleSheet, View } from "react-native";
+import "react-native-reanimated";
 
-import { PlayerProvider } from '@/contexts/player-context';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { PlayerProvider } from "@/contexts/player-context";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import { useColorScheme } from "@/hooks/use-color-scheme";
 
 const IPHONE_17_WIDTH = 430;
 const IPHONE_17_HEIGHT = 932;
@@ -14,34 +19,48 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <NavigationThemeProvider
+      value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+    >
       <View style={styles.viewportRoot}>
         <View style={styles.viewportFrame}>
-          <PlayerProvider>
-            <Stack>
-              <Stack.Screen name="index" options={{ headerShown: false }} />
-              <Stack.Screen name="all-albums" options={{ headerShown: false }} />
-              <Stack.Screen name="player" options={{ headerShown: false, presentation: 'modal' }} />
-            </Stack>
-          </PlayerProvider>
+          <ThemeProvider>
+            <PlayerProvider>
+              <Stack>
+                <Stack.Screen name="index" options={{ headerShown: false }} />
+                <Stack.Screen
+                  name="all-albums"
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="player"
+                  options={{
+                    headerShown: false,
+                    presentation: "fullScreenModal",
+                  }}
+                />
+                <Stack.Screen name="+not-found" options={{ title: "Oops!" }} />
+              </Stack>
+            </PlayerProvider>
+          </ThemeProvider>
         </View>
       </View>
       <StatusBar style="light" />
-    </ThemeProvider>
+    </NavigationThemeProvider>
   );
 }
 
 const styles = StyleSheet.create({
   viewportRoot: {
     flex: 1,
-    backgroundColor: '#000000',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#000000",
+    alignItems: "center",
+    justifyContent: "center",
   },
   viewportFrame: {
     flex: 1,
-    width: '100%',
-    ...(Platform.OS === 'web'
+    width: "100%",
+    ...(Platform.OS === "web"
       ? {
           width: IPHONE_17_WIDTH,
           minWidth: IPHONE_17_WIDTH,
@@ -49,11 +68,11 @@ const styles = StyleSheet.create({
           height: IPHONE_17_HEIGHT,
           minHeight: IPHONE_17_HEIGHT,
           maxHeight: IPHONE_17_HEIGHT,
-          overflow: 'hidden',
+          overflow: "hidden",
           borderRadius: 22,
           borderWidth: 1,
-          borderColor: '#1a1a1a',
-          backgroundColor: '#000000',
+          borderColor: "#1a1a1a",
+          backgroundColor: "#000000",
         }
       : {}),
   },

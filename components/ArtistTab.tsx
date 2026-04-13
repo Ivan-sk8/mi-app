@@ -1,15 +1,68 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import ArtistsMasonry from "./ArtistsMasonry";
+import { useTheme } from "../contexts/ThemeContext";
 
 export default function ArtistTab() {
+  const { c } = useTheme();
+  const [query, setQuery] = useState("");
+
   return (
-    <View style={styles.container}>
-      <View style={styles.headerRow}>
-        <Text style={styles.headerTitle}>Artista</Text>
-        <View style={styles.settingsButton}>
-          <Text style={{ fontSize: 22, color: "#222" }}>⚙️</Text>
+    <View style={[styles.container, { backgroundColor: c.bg }]}>
+      {/* ── Search bar ─────────────────────────────────────────────────────── */}
+      <View style={styles.searchRow}>
+        <View
+          style={[
+            styles.searchBox,
+            {
+              backgroundColor: c.glass2,
+              borderColor: c.border,
+              shadowColor: c.shadow,
+            },
+          ]}
+        >
+          {/* Top highlight strip */}
+          <View style={[styles.highlight, { backgroundColor: c.highlight }]} />
+
+          <Ionicons
+            name="search"
+            size={17}
+            color={c.textMuted}
+            style={styles.searchIcon}
+          />
+
+          <TextInput
+            style={[styles.input, { color: c.textPrimary }]}
+            placeholder="Buscar artista…"
+            placeholderTextColor={c.textMuted}
+            value={query}
+            onChangeText={setQuery}
+            returnKeyType="search"
+            autoCorrect={false}
+            autoCapitalize="none"
+            clearButtonMode="never"
+          />
+
+          {query.length > 0 && (
+            <TouchableOpacity
+              onPress={() => setQuery("")}
+              activeOpacity={0.7}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            >
+              <Ionicons
+                name="close-circle"
+                size={17}
+                color={c.textMuted}
+                style={styles.clearIcon}
+              />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
+
+      {/* ── Artists word cloud ─────────────────────────────────────────────── */}
+      <ArtistsMasonry searchQuery={query} />
     </View>
   );
 }
@@ -17,28 +70,48 @@ export default function ArtistTab() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f4f3ef",
-    paddingTop: 48,
-    paddingHorizontal: 24,
+    paddingTop: 36,
   },
-  headerRow: {
+  searchRow: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 12,
+    paddingHorizontal: 16,
+    marginBottom: 10,
   },
-  headerTitle: {
-    fontSize: 38,
-    fontWeight: "700",
-    color: "#222",
-    letterSpacing: -1,
-  },
-  settingsButton: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    justifyContent: "center",
+  searchBox: {
+    flex: 1,
+    flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#e7e6e2",
+    borderRadius: 999,
+    borderWidth: 1,
+    paddingHorizontal: 14,
+    height: 44,
+    overflow: "hidden",
+    position: "relative",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    elevation: 4,
+  },
+  highlight: {
+    position: "absolute",
+    top: 0,
+    left: 20,
+    right: 20,
+    height: 1,
+    borderRadius: 999,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  input: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: "400",
+    paddingVertical: 0,
+    includeFontPadding: false,
+  },
+  clearIcon: {
+    marginLeft: 6,
   },
 });
