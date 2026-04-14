@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Estilo — Travel & Beats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colors */
+            --primary: #10A5C2;
+            --secondary: #AFD632;
+            --white: #FFFFFF;
+            --black: #1A1A1A;
+            --black-2: #2E2E2E;
+            --gray-1: #4A4A4A;
+            --gray-2: #7D7D7D;
+            --gray-3: #C2C2C2;
+            --gray-4: #E5E5E5;
+            --bg-light: #F8F9FA;
+            
+            /* State Colors */
+            --info: #2D9CDB;
+            --success: #27AE60;
+            --warning: #F2C94C;
+            --error: #EB5757;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.1);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: var(--black);
+            font-family: 'Inter', sans-serif;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            aspect-ratio: 16/9;
+            box-shadow: var(--shadow-md);
+            border-bottom: 4px solid var(--primary);
+            position: relative;
+        }
+
+        .card-header {
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-2);
+            border-bottom: 1px solid var(--gray-4);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Hero / Portada */
+        .card.hero {
+            background: var(--primary);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            border-bottom: 4px solid var(--secondary);
+        }
+
+        .hero-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e0/Palm_Tree_Icon.svg');
+            background-repeat: no-repeat;
+            background-position: 90% 20%;
+            background-size: 120px;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .color-box {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .swatch {
+            height: 80px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .swatch-info {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gray-1);
+        }
+
+        /* Typography */
+        .typo-sample {
+            margin-bottom: 20px;
+        }
+
+        .typo-name {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .typo-display {
+            font-size: 40px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        /* Elements */
+        .elements-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-secondary { background: var(--secondary); color: white; }
+        .btn-outline { border: 2px solid var(--primary); background: transparent; color: var(--primary); }
+        .btn-ghost { background: transparent; color: var(--gray-1); }
+
+        .input-group {
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--gray-1);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--gray-4);
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        /* Logo variants */
+        .logo-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-main {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 42px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-main span { color: var(--secondary); }
+
+        .logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+        }
+
+        /* Section Titles inside Content */
+        .section-num {
+            font-size: 80px;
+            font-weight: 900;
+            color: var(--secondary);
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            line-height: 1;
+            opacity: 0.8;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 32px;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-left: 60px;
+        }
+
+        /* Grid specific card background */
+        .card.bg-secondary {
+            background-color: var(--secondary);
+            border-bottom-color: var(--primary);
+        }
+
+        .card.bg-secondary .section-num { color: var(--primary); }
+        .card.bg-secondary .section-title { color: white; }
+
+        .card.bg-primary {
+            background-color: var(--primary);
+            border-bottom-color: var(--secondary);
+        }
+
+        .card.bg-primary .section-num { color: var(--secondary); }
+        .card.bg-primary .section-title { color: white; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Card 1: Portada -->
+    <div class="card hero">
+        <div class="hero-content">
+            <h1>Guía de estilo</h1>
+            <p>Travel & Beats</p>
+        </div>
+    </div>
+
+    <!-- Card 2: Index -->
+    <div class="card">
+        <div class="card-header">
+            <span>Index</span>
+            <span>Style Guide</span>
+        </div>
+        <div class="card-content">
+            <h2 style="font-family: Montserrat; font-weight: 900; font-size: 38px; color: var(--primary);">Index</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; font-weight: 600; font-size: 13px;">
+                <div>1. Logo</div>
+                <div>4. Iconografía</div>
+                <div>2. Paleta de Colores</div>
+                <div>5. Grid y Layouts</div>
+                <div>3. Tipografía</div>
+                <div>6. Elementos Interactivos</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 3: Logo Title -->
+    <div class="card bg-secondary">
+        <div class="section-num">1.</div>
+        <div class="card-content">
+            <div class="section-title">Logo</div>
+        </div>
+    </div>
+
+    <!-- Card 4: Logo Main -->
+    <div class="card">
+        <div class="card-header"><span>LOGO PRINCIPAL</span></div>
+        <div class="card-content">
+            <div class="logo-main">Travel <span>& Beats</span></div>
+        </div>
+    </div>
+
+    <!-- Card 5: Color Title -->
+    <div class="card bg-primary">
+        <div class="section-num">2.</div>
+        <div class="card-content">
+            <div class="section-title">Paleta de Colores</div>
+        </div>
+    </div>
+
+    <!-- Card 6: Main Palette -->
+    <div class="card">
+        <div class="card-header"><span>COLORES DE LA MARCA</span></div>
+        <div class="card-content">
+            <div class="color-grid">
+                <div class="color-box">
+                    <div class="swatch" style="background: var(--primary);"></div>
+                    <div class="swatch-info">Primario #10A5C2</div>
+                </div>
+                <div class="color-box">
+                    <div class="swatch" style="background: var(--secondary);"></div>
+                    <div class="swatch-info">Secundario #AFD632</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 7: Greys Palette -->
+    <div class="card">
+        <div class="card-header"><span>COLORES NEGROS Y GRISES</span></div>
+        <div class="card-content">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <div style="width: 45px; height: 45px; background: var(--black); border-radius: 4px;"></div>
+                <div style="width: 45px; height: 45px; background: var(--black-2); border-radius: 4px;"></div>
+                <div style="width: 45px; height: 45px; background: var(--gray-1); border-radius: 4px;"></div>
+                <div style="width: 45px; height: 45px; background: var(--gray-2); border-radius: 4px;"></div>
+                <div style="width: 45px; height: 45px; background: var(--gray-3); border-radius: 4px;"></div>
+                <div style="width: 45px; height: 45px; background: var(--gray-4); border-radius: 4px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 8: Typo Title -->
+    <div class="card bg-secondary">
+        <div class="section-num">3.</div>
+        <div class="card-content">
+            <div class="section-title">Tipografía</div>
+        </div>
+    </div>
+
+    <!-- Card 9: Montserrat -->
+    <div class="card">
+        <div class="card-header"><span>TIPOGRAFÍA - MONTSERRAT</span></div>
+        <div class="card-content">
+            <div class="typo-sample">
+                <div class="typo-name">Montserrat</div>
+                <div class="typo-display" style="font-family: 'Montserrat';">Aa</div>
+                <div style="font-family: 'Montserrat'; font-weight: 800; font-size: 20px;">Travel & Beats</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 10: Inter -->
+    <div class="card">
+        <div class="card-header"><span>TIPOGRAFÍA - INTER</span></div>
+        <div class="card-content">
+            <div class="typo-sample">
+                <div class="typo-name">Inter</div>
+                <div class="typo-display" style="font-family: 'Inter'; font-weight: 400;">Aa</div>
+                <div style="font-family: 'Inter'; font-size: 16px;">Diseño de experiencia para viajeros modernos.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 11: Iconography Title -->
+    <div class="card bg-primary">
+        <div class="section-num">4.</div>
+        <div class="card-content">
+            <div class="section-title">Iconografía</div>
+        </div>
+    </div>
+
+    <!-- Card 12: Icons Display -->
+    <div class="card">
+        <div class="card-header"><span>CONJUNTO DE ICONOS</span></div>
+        <div class="card-content">
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; text-align: center;">
+                <div style="font-size: 24px;">🏠</div>
+                <div style="font-size: 24px;">🔍</div>
+                <div style="font-size: 24px;">👤</div>
+                <div style="font-size: 24px;">❤️</div>
+                <div style="font-size: 24px;">⚙️</div>
+                <div style="font-size: 24px;">📍</div>
+                <div style="font-size: 24px;">📅</div>
+                <div style="font-size: 24px;">✈️</div>
+                <div style="font-size: 24px;">🎵</div>
+                <div style="font-size: 24px;">💬</div>
+                <div style="font-size: 24px;">📸</div>
+                <div style="font-size: 24px;">🔔</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 13: Interactive Title -->
+    <div class="card bg-secondary">
+        <div class="section-num">6.</div>
+        <div class="card-content">
+            <div class="section-title" style="font-size: 24px;">Elementos Interactivos</div>
+        </div>
+    </div>
+
+    <!-- Card 14: Buttons -->
+    <div class="card">
+        <div class="card-header"><span>BOTONES</span></div>
+        <div class="card-content">
+            <div class="elements-row">
+                <button class="btn btn-primary">Primario</button>
+                <button class="btn btn-secondary">Secundario</button>
+            </div>
+            <div class="elements-row">
+                <button class="btn btn-outline">Delineado</button>
+                <button class="btn btn-ghost">Fantasma</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 15: Forms -->
+    <div class="card">
+        <div class="card-header"><span>CAMPOS DE TEXTO</span></div>
+        <div class="card-content">
+            <div class="input-group">
+                <label>Nombre de usuario</label>
+                <input type="text" placeholder="Ej: cesar_sanchez">
+            </div>
+            <div class="input-group">
+                <label>Correo electrónico</label>
+                <input type="email" value="contacto@travelbeats.com">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

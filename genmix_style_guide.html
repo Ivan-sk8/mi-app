@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+            background-color: #000000;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #000000;
+            color: #ECEDEE;
+        }
+        .page {
+            width: 210mm;
+            height: 297mm;
+            position: relative;
+            page-break-after: always;
+            overflow: hidden;
+        }
+        /* Page 1: Hero / Title */
+        .hero {
+            background: linear-gradient(135deg, #151718 0%, #000000 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .hero-content {
+            position: absolute;
+            top: 40%;
+            width: 100%;
+        }
+        .hero h1 {
+            font-size: 42pt;
+            margin: 0;
+            letter-spacing: -1px;
+            color: #FFFFFF;
+        }
+        .hero p {
+            font-size: 14pt;
+            color: #9BA1A6;
+            margin-top: 10px;
+        }
+        .accent-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: #0a7ea4;
+        }
+
+        /* Generic Styles */
+        .content-padding {
+            padding: 40px;
+        }
+        .section-title {
+            font-size: 24pt;
+            color: #0a7ea4;
+            border-left: 4px solid #0a7ea4;
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+        .grid {
+            display: table;
+            width: 100%;
+            border-spacing: 10px;
+        }
+        .grid-row {
+            display: table-row;
+        }
+        .grid-cell {
+            display: table-cell;
+            background: #151718;
+            padding: 20px;
+            border-radius: 12px;
+            vertical-align: top;
+        }
+
+        /* Palette Colors */
+        .color-box {
+            height: 60px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+        }
+
+        /* Components Page */
+        .component-preview {
+            background: #000;
+            border: 1px solid #151718;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .player-mini {
+            background: rgba(21, 23, 24, 0.8);
+            border: 1px solid #333;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .album-art-small {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 4px;
+            margin-right: 12px;
+        }
+
+        .footer-info {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            font-size: 9pt;
+            color: #687076;
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1: COVER -->
+    <div class="page hero">
+        <div class="hero-content">
+            <h1>GenMix Sound</h1>
+            <p>GUÍA DE ESTILO VISUAL & SISTEMA DE DISEÑO</p>
+            <div style="margin-top: 40px; font-size: 10pt; color: #687076; letter-spacing: 2px;">V 1.0 | MULTIPLATAFORMA</div>
+        </div>
+        <div class="accent-bar"></div>
+    </div>
+
+    <!-- PAGE 2: COLORS -->
+    <div class="page">
+        <div class="content-padding">
+            <h2 class="section-title">Paleta de Colores</h2>
+            <div class="grid">
+                <div class="grid-row">
+                    <div class="grid-cell">
+                        <h3 style="color: #0a7ea4">Modo Claro</h3>
+                        <div class="color-box" style="background: #FFFFFF;"></div>
+                        <p>Fondo: #FFFFFF</p>
+                        <div class="color-box" style="background: #11181C;"></div>
+                        <p>Texto: #11181C</p>
+                        <div class="color-box" style="background: #0a7ea4;"></div>
+                        <p>Principal: #0a7ea4</p>
+                    </div>
+                    <div class="grid-cell">
+                        <h3 style="color: #FFFFFF">Modo Oscuro</h3>
+                        <div class="color-box" style="background: #151718;"></div>
+                        <p>Fondo: #151718</p>
+                        <div class="color-box" style="background: #ECEDEE;"></div>
+                        <p>Texto: #ECEDEE</p>
+                        <div class="color-box" style="background: #FFFFFF;"></div>
+                        <p>Principal: #FFFFFF</p>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 40px; background: #151718; padding: 20px; border-radius: 12px;">
+                <h3 style="margin-top: 0;">Iconografía & Tabs</h3>
+                <p style="color: #9BA1A6">Default: #687076 / #9BA1A6</p>
+                <p style="color: #0a7ea4">Seleccionado: #0a7ea4 / #FFFFFF</p>
+            </div>
+        </div>
+        <div class="footer-info">GenMix Sound - Guía de Identidad</div>
+    </div>
+
+    <!-- PAGE 3: TYPOGRAPHY & LAYOUT -->
+    <div class="page">
+        <div class="content-padding">
+            <h2 class="section-title">Tipografía y Estructura</h2>
+            
+            <h3>Sistemas Nativos</h3>
+            <div class="grid">
+                <div class="grid-row">
+                    <div class="grid-cell">
+                        <p style="font-family: system-ui; font-size: 18pt;">Sans: system-ui</p>
+                        <p style="color: #9BA1A6; font-size: 10pt;">Utilizada para navegación y listas. Alta legibilidad.</p>
+                    </div>
+                    <div class="grid-cell">
+                        <p style="font-family: ui-rounded; font-size: 18pt;">Rounded: ui-rounded</p>
+                        <p style="color: #9BA1A6; font-size: 10pt;">Utilizada en interfaces modernas (iOS).</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Arquitectura de Pantallas</h3>
+            <ul style="color: #ECEDEE; line-height: 1.8;">
+                <li><strong>Index:</strong> Feed principal con Masonry List.</li>
+                <li><strong>All-Albums:</strong> Vista extendida de biblioteca.</li>
+                <li><strong>Player:</strong> Modal Fullscreen (Fondo Negro #000000).</li>
+                <li><strong>Preview:</strong> Detalle rápido de álbum.</li>
+            </ul>
+
+            <h3 style="margin-top: 40px;">Tecnologías UI</h3>
+            <code style="color: #0a7ea4; background: #111; padding: 15px; display: block; border-radius: 8px;">
+                expo-router | react-native-reanimated | expo-blur | expo-haptics
+            </code>
+        </div>
+        <div class="footer-info">GenMix Sound - Especificaciones Técnicas</div>
+    </div>
+
+    <!-- PAGE 4: COMPONENTS -->
+    <div class="page">
+        <div class="content-padding">
+            <h2 class="section-title">Componentes Clave</h2>
+            
+            <div class="component-preview">
+                <p style="color: #9BA1A6; font-size: 9pt; margin-bottom: 10px;">UI / MINI PLAYER (BLUR ENABLED)</p>
+                <div class="player-mini">
+                    <div class="album-art-small"></div>
+                    <div>
+                        <div style="font-size: 10pt; font-weight: bold;">No One Noticed</div>
+                        <div style="font-size: 8pt; color: #9BA1A6;">The Marías</div>
+                    </div>
+                    <div style="margin-left: auto; color: #0a7ea4; font-size: 12pt;">▶</div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="grid-row">
+                    <div class="grid-cell" style="text-align: center;">
+                        <p style="color: #9BA1A6; font-size: 9pt;">ALBUM COVER (HQ)</p>
+                        <div style="background: #333; width: 100px; height: 100px; margin: 10px auto; border-radius: 8px;"></div>
+                        <p style="font-size: 8pt;">600x600px (JPG)</p>
+                    </div>
+                    <div class="grid-cell">
+                        <p style="color: #9BA1A6; font-size: 9pt;">RESOURCES</p>
+                        <p style="font-size: 9pt;">Iconos: @expo/vector-icons</p>
+                        <p style="font-size: 9pt;">Imágenes: expo-image</p>
+                        <p style="font-size: 9pt;">Listas: Masonry List</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h3>Estructura de Directorios</h3>
+                <pre style="background: #111; padding: 20px; border-radius: 8px; font-size: 10pt; color: #9BA1A6;">
+/app        <- Pantallas
+/components <- Lógica visual
+/ui         <- Átomos reutilizables
+/constants  <- Theme.ts (Tokens)
+                </pre>
+            </div>
+        </div>
+        <div class="footer-info">GenMix Sound - Sistema de Diseño 2026</div>
+    </div>
+</body>
+</html>
